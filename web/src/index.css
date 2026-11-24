@@ -1,0 +1,111 @@
+@import 'tailwindcss';
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+body {
+  background: #F5F6FA;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+:root, .admin-shell {
+  --radius: 0.75rem;
+  --background: oklch(0.985 0.002 247.839);
+  --foreground: oklch(0.21 0.034 264.665);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.21 0.034 264.665);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.21 0.034 264.665);
+  --primary: oklch(0.488 0.217 264.052);
+  --primary-foreground: oklch(0.985 0.002 247.839);
+  --secondary: oklch(0.968 0.007 247.896);
+  --secondary-foreground: oklch(0.361 0.06 264.029);
+  --muted: oklch(0.968 0.007 247.896);
+  --muted-foreground: oklch(0.554 0.046 257.417);
+  --accent: oklch(0.93 0.032 255.585);
+  --accent-foreground: oklch(0.361 0.06 264.029);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.929 0.013 255.508);
+  --input: oklch(0.929 0.013 255.508);
+  --ring: oklch(0.607 0.125 263.231);
+  --chart-1: oklch(0.488 0.217 264.052);
+  --chart-2: oklch(0.553 0.135 291.089);
+  --chart-3: oklch(0.665 0.141 23.55);
+  --chart-4: oklch(0.607 0.125 263.231);
+  --chart-5: oklch(0.74 0.14 314.21);
+}
+
+.admin-shell {
+  background: var(--background);
+  color: var(--foreground);
+  color-scheme: light;
+  isolation: isolate;
+}
+
+[data-radix-popper-content-wrapper] {
+  z-index: 110 !important;
+}
+
+[data-slot="dialog-overlay"],
+[data-slot="alert-dialog-overlay"],
+[data-slot="sheet-overlay"] {
+  z-index: 90 !important;
+  background: rgba(15, 23, 42, 0.55) !important;
+}
+
+[data-slot="dialog-content"],
+[data-slot="alert-dialog-content"],
+[data-slot="sheet-content"] {
+  z-index: 100 !important;
+  background: var(--background) !important;
+  color: var(--foreground) !important;
+  border-color: var(--border) !important;
+}
+
+[data-slot="select-content"],
+[data-slot="dropdown-menu-content"],
+[data-slot="popover-content"],
+[data-slot="dropdown-menu-sub-content"] {
+  background: var(--popover) !important;
+  color: var(--popover-foreground) !important;
+  border: 1px solid var(--border) !important;
+  box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16) !important;
+  opacity: 1 !important;
+  backdrop-filter: none !important;
+}
+
+[data-slot="select-item"],
+[data-slot="dropdown-menu-item"],
+[data-slot="dropdown-menu-checkbox-item"],
+[data-slot="dropdown-menu-radio-item"] {
+  min-height: 2rem;
+  line-height: 1.35;
+}
+
+.admin-shell *, .admin-shell *::before, .admin-shell *::after {
+  border-color: var(--border);
+}
