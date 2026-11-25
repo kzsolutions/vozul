@@ -11,7 +11,12 @@ const items = [
   { to: '/student/perfil', label: 'Perfil', icon: User },
 ]
 
-export default function Sidebar() {
+type Props = {
+  onNavigate?: () => void
+  className?: string
+}
+
+export default function Sidebar({ onNavigate, className }: Props) {
   const { signOut, profile } = useAuth()
   const navigate = useNavigate()
   const naoLidas = useNaoLidas()
@@ -19,7 +24,7 @@ export default function Sidebar() {
 
   return (
     <aside
-      className="fixed left-0 top-0 flex h-screen w-72 flex-col"
+      className={'flex h-full w-72 flex-col ' + (className ?? '')}
       style={{ background: colors.primario }}
     >
       <div className="flex items-center gap-3 px-6 py-6">
@@ -36,7 +41,10 @@ export default function Sidebar() {
 
       <div className="px-4 pb-4">
         <button
-          onClick={() => navigate('/student/denuncia')}
+          onClick={() => {
+            navigate('/student/denuncia')
+            onNavigate?.()
+          }}
           className="flex w-full items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 font-semibold shadow-sm transition hover:bg-white/90"
           style={{ color: colors.primario }}
         >
@@ -53,6 +61,7 @@ export default function Sidebar() {
               key={item.to}
               to={item.to}
               end={item.to === '/student'}
+              onClick={onNavigate}
               className={({ isActive }) =>
                 'flex items-center gap-3 rounded-lg px-3 py-2.5 transition ' +
                 (isActive

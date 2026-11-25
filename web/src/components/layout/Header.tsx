@@ -55,7 +55,7 @@ export default function Header() {
 
   return (
     <header
-      className="sticky top-0 z-10 flex h-16 items-center justify-between border-b bg-white px-6"
+      className="sticky top-0 z-10 flex h-16 items-center justify-between gap-3 border-b bg-white px-4 md:px-6"
       style={{ borderColor: colors.cinzaBorda }}
     >
       <div>
@@ -83,7 +83,7 @@ export default function Header() {
 
         {open && (
           <div
-            className="absolute right-0 mt-2 max-h-[70vh] w-96 overflow-y-auto rounded-xl border bg-white shadow-lg"
+            className="absolute right-0 mt-2 max-h-[70vh] w-[calc(100vw-2rem)] max-w-96 overflow-y-auto rounded-xl border bg-white shadow-lg"
             style={{ borderColor: colors.cinzaBorda }}
           >
             <div

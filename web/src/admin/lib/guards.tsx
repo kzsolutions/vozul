@@ -17,9 +17,10 @@ export function RequireAuth() {
   const location = useLocation()
 
   if (loading) return <TelaCarregamento />
-  if (!session || !profile) {
+  if (!session) {
     return <Navigate to="/login" state={{ from: location.pathname }} replace />
   }
+  if (!profile) return <TelaCarregamento />
   if (profile.role !== 'admin' && profile.role !== 'super_admin') { return <Navigate to='/' replace /> }
   return <Outlet />
 }

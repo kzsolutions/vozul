@@ -1,4 +1,4 @@
-﻿import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
+﻿import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from 'react'
 import { supabase } from '../config/supabase'
 import type { Profile } from '../lib/types'
 
@@ -21,27 +21,48 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<any>(null)
   const [profile, setProfile] = useState<Profile | null>(null)
   const [loading, setLoading] = useState(true)
+  const profileIdRef = useRef<string | null>(null)
 
   async function carregarPerfil(id: string) {
     const { data } = await supabase.from('profiles').select('*').eq('id', id).single()
-    setProfile((data as Profile | null) ?? null)
+    const next = (data as Profile | null) ?? null
+    profileIdRef.current = next?.id ?? id
+    setProfile(next)
+    return next
   }
 
   useEffect(() => {
-    supabase.auth.getSession().then((result: any) => {
-      const session = result?.data?.session
-      setUser(session?.user ?? null)
-      if (session?.user) void carregarPerfil(session.user.id)
-      setLoading(false)
+    let active = true
+
+    async function syncSession(session: any) {
+      const nextUser = session?.user ?? null
+      if (!active) return
+      setUser(nextUser)
+      if (nextUser?.id) {
+        if (profileIdRef.current !== nextUser.id) setProfile(null)
+        await carregarPerfil(nextUser.id)
+      } else {
+        profileIdRef.current = null
+        setProfile(null)
+      }
+      if (active) setLoading(false)
+    }
+
+    supabase.auth.getSession().then(({ data }) => {
+      void syncSession(data.session)
+    }).catch(() => {
+      if (active) setLoading(false)
     })
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event: any, session: any) => {
-      setUser(session?.user ?? null)
-      if (session?.user) void carregarPerfil(session.user.id)
-      else setProfile(null)
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setLoading(true)
+      void syncSession(session)
     })
 
-    return () => subscription.unsubscribe()
+    return () => {
+      active = false
+      subscription.unsubscribe()
+    }
   }, [])
 
   async function signIn(email: string, password: string) {
@@ -51,6 +72,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   async function signOut() {
     await supabase.auth.signOut({ scope: 'local' }).catch(() => {})
+    profileIdRef.current = null
     setProfile(null)
     setUser(null)
   }
