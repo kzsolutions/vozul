@@ -67,13 +67,13 @@ export default function Landing() {
         <section id="inicio" style={{ background: azulClaro }}>
           <div className="mx-auto grid max-w-6xl gap-12 px-6 py-16 md:grid-cols-[1.2fr_0.8fr] md:items-center md:py-24">
             <div>
-              <span
-                className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold shadow-sm"
-                style={{ color: azul }}
-              >
-                <ShieldCheck className="h-4 w-4" />
-                Plataforma oficial da Universidade Licungo
-              </span>
+                <span
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-semibold shadow-sm"
+                  style={{ color: azul }}
+                >
+                  <ShieldCheck className="h-4 w-4" />
+                  Plataforma para a comunidade académica
+                </span>
 
               <h1 className="mt-6 text-4xl font-bold leading-tight md:text-5xl" style={{ color: azul }}>
                 A sua voz importa.
@@ -81,14 +81,14 @@ export default function Landing() {
                 Denuncie com segurança.
               </h1>
 
-              <p className="mt-5 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
-                A VozUL é a plataforma oficial da Universidade Licungo para denúncias
-                <strong> anónimas ou identificadas</strong>, conforme a escolha do estudante,
-                sobre assédio, corrupção académica, abuso de poder, discriminação e outras
-                condutas inadequadas. O sistema verifica o vínculo académico à Universidade
-                Licungo para garantir autenticidade e legitimidade, preservando a confidencialidade
-                conforme a modalidade escolhida.
-              </p>
+                <p className="mt-5 max-w-2xl text-base leading-relaxed text-gray-600 md:text-lg">
+                  A VozUL é uma plataforma de denúncias académicas desenvolvida para a comunidade da
+                  Universidade Licungo, para denúncias <strong>anónimas ou identificadas</strong>,
+                  conforme a escolha do estudante, sobre assédio, corrupção académica, abuso de poder,
+                  discriminação e outras condutas inadequadas. O sistema verifica o vínculo académico à
+                  Universidade Licungo para apoiar autenticidade e legitimidade, preservando a
+                  confidencialidade conforme a modalidade escolhida e os controlos implementados.
+                </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <button
@@ -119,12 +119,12 @@ export default function Landing() {
               <h2 className="mt-5 text-xl font-bold" style={{ color: azul }}>
                 Confidencialidade e legitimidade
               </h2>
-              <p className="mt-3 text-sm leading-relaxed text-gray-600">
-                O VozUL verifica o vínculo académico à Universidade Licungo para garantir que as denúncias
-                são autênticas e legítimas. O estudante escolhe se a denúncia será anónima ou identificada.
-              </p>
-              <ul className="mt-5 space-y-2 text-sm text-gray-600">
-                {['Denúncia anónima ou identificada, à escolha do estudante', 'Verificação do vínculo académico à Universidade Licungo', 'Confidencialidade preservada conforme a modalidade escolhida'].map((item) => (
+                <p className="mt-3 text-sm leading-relaxed text-gray-600">
+                  O VozUL verifica o vínculo académico à Universidade Licungo para apoiar a autenticidade
+                  das denúncias. O estudante escolhe se a denúncia será anónima ou identificada.
+                </p>
+                <ul className="mt-5 space-y-2 text-sm text-gray-600">
+                  {['Denúncia anónima ou identificada, à escolha do estudante', 'Verificação do vínculo académico à Universidade Licungo', 'Confidencialidade tratada conforme a modalidade escolhida e controlos de acesso'].map((item) => (
                   <li key={item} className="flex items-start gap-2">
                     <span className="mt-1.5 h-1.5 w-1.5 rounded-full" style={{ background: azul }} />
                     {item}

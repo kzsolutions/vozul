@@ -40,8 +40,8 @@ const CATEGORIAS: { nome: string; icone: LucideIcon }[] = [
 ]
 
 const INFO_ANONIMATO = [
-  { icone: EyeOff, texto: 'Nenhuma denúncia anónima revela a sua identidade.' },
-  { icone: GlobeLock, texto: 'O IP e a localização nunca são registados.' },
+  { icone: EyeOff, texto: 'Nas denúncias anónimas, a autoria não é associada ao relato no sistema.' },
+  { icone: GlobeLock, texto: 'A plataforma aplica controlos técnicos para proteger a confidencialidade dos dados.' },
   { icone: Hash, texto: 'Cada denúncia gera um código único para acompanhamento.' },
 ]
 
