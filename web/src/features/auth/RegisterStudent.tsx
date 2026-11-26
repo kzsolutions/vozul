@@ -4,7 +4,7 @@ import { FunctionsFetchError, FunctionsHttpError } from '@supabase/supabase-js'
 import { supabase } from '../../config/supabase'
 import { Mail, Lock, User, Phone, Hash, ArrowLeft, Info } from 'lucide-react'
 import { colors } from '../../config/theme'
-import { normalizarNumeroEstudante, validarNumeroEstudante, MSG_NUMERO_INVALIDO } from '../../lib/validators/studentNumber'
+import { formatarNumeroEstudante, normalizarNumeroEstudante, validarNumeroEstudante, MSG_NUMERO_INVALIDO } from '../../lib/validators/studentNumber'
 
 interface Polo { id: string; nome: string; principal: boolean }
 interface Faculdade { id: string; nome: string; polo_id: string }
@@ -135,8 +135,8 @@ export default function RegisterStudent() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div>
                 <label className="text-sm mb-1 block text-gray-700">Número de estudante</label>
-              <div className="relative"><Hash className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5" style={{color:colors.cinza}}/><input value={numero} onChange={e=>setNumero(e.target.value)} placeholder="05.1234.2026" required className="w-full rounded-lg border pl-10 pr-3 py-2.5 bg-white" style={{borderColor:colors.cinzaBorda}}/></div>
-              <p className="mt-1 text-xs text-gray-500">Formato esperado: 00.0000.0000. Enquanto a integração oficial não está ativa, são aceites números de teste com este formato (ex.: 05.1234.2026).</p>
+              <div className="relative"><Hash className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5" style={{color:colors.cinza}}/><input value={numero} onChange={e=>setNumero(formatarNumeroEstudante(e.target.value))} placeholder="00.0000.0000" inputMode="numeric" maxLength={12} required className="w-full rounded-lg border pl-10 pr-3 py-2.5 bg-white" style={{borderColor:colors.cinzaBorda}}/></div>
+              <p className="mt-1 text-xs text-gray-500">Formato esperado: 00.0000.0000. Enquanto a integração oficial não está ativa, são aceites números de teste com este formato.</p>
               </div>
               <div>
                 <label className="text-sm mb-1 block text-gray-700">Número de celular</label>

@@ -180,13 +180,6 @@ type Adaptador = (ctx: ContextoConsulta) => Promise<ResultadoValidacao>
 const validarMock: Adaptador = async (ctx) => {
   // Modo de teste: aceita qualquer numero no formato oficial enquanto a API
   // real da Universidade nao estiver integrada.
-  const valido = true
-  if (!valido) return { valido: false, estado: 'nao_encontrado', nome: null, faculdade: null, curso: null, origem: 'mock', mensagem: '' }
-  }
-
-  // Escolha estavel: os tres ultimos digitos do numero escolhem o par
-  // faculdade/curso, de modo que numeros diferentes caem em cursos diferentes
-  // e o mesmo numero repete sempre o mesmo resultado.
   const digitos = ctx.numero.replace(/\D/g, '')
   const escolhido = ctx.catalogo.length === 0
     ? null
